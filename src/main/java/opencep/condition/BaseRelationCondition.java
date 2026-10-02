@@ -13,7 +13,7 @@ public class BaseRelationCondition extends BinaryCondition {
     relopType = op;
   }
 
-  @SuppressWarnings({"unchecked", "rawtypes"})
+  @SuppressWarnings({"unchecked"})
   public static int compareValues(Object a, Object b) {
     if (a instanceof Number x && b instanceof Number y)
       return new BigDecimal(x.toString()).compareTo(new BigDecimal(y.toString()));
