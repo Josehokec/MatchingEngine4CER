@@ -1,0 +1,6 @@
+The cersrt Java recognition package is based on Wayeb by Elias Alevizos,
+as distributed in https://github.com/ElAlev/cer-srt at commit
+688cb0617131024aa2538d0ddc6b5d500c3aaaea.
+
+Upstream attribution and licensing terms are preserved in
+META-INF/licenses/wayeb-LICENSE.md. See docs/cer-srt.md for scope and changes.

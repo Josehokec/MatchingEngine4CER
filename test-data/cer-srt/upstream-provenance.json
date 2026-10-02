@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/ElAlev/cer-srt",
+  "commit": "688cb0617131024aa2538d0ddc6b5d500c3aaaea",
+  "referenceExecutable": "jars/wayeb.jar",
+  "referenceJarSha256": "ea3c782934cae1ec60251dee1a91bfb2421c454bbcb269328d9c2ad4a2bdf380",
+  "fixtureSha256": "c740b1509c8027a674f4021b103d0aa41741cdc0b87f37b2e5438a109860bfab",
+  "cases": 43,
+  "nonempty": 43,
+  "matches": 18890,
+  "referenceOptions": {
+    "fsmModel": "nsra",
+    "opt": true,
+    "reset": false,
+    "window": 100
+  },
+  "notes": [
+    "Expected event-id sequences were captured from the upstream executable, not produced by the Java port.",
+    "Small synthetic witnesses; not the full compressed research datasets.",
+    "The shipped executable may differ from the archived Scala source.",
+    "Partition cases reflect the upstream optimized executable, whose partition behavior is separately documented."
+  ]
+}

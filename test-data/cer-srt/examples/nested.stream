@@ -1,0 +1,7 @@
+SELL(id=1,name=INTC,volume=100,price=20.0,timestamp=1)
+BUY(id=2,name=RIMM,volume=100,price=25.0,timestamp=2)
+BUY(id=3,name=QQQ,volume=100,price=30.0,timestamp=3)
+BUY(id=4,name=OTHER,volume=100,price=1.0,timestamp=4)
+BUY(id=5,name=RIMM,volume=100,price=26.0,timestamp=5)
+BUY(id=6,name=QQQ,volume=100,price=31.0,timestamp=6)
+SELL(id=7,name=END,volume=100,price=10.0,timestamp=7)

@@ -99,3 +99,17 @@ Compatibility mode intentionally reproduces historical aggregate identity/timest
 ```
 
 The tests need only JDK 17 and the included fixtures. They run semantic and algorithm regressions and compare compatibility-mode matches and probabilities with 126 saved Python results, using both raw input streams and Java event objects. Fixture inputs contain at most 180 records each; these comparisons do not claim that every upstream benchmark or every possible configuration was reproduced.
+
+## CER-SRT Java engine
+
+The additional `cersrt` package ports the Wayeb symbolic-register recognition engine from [ElAlev/cer-srt](https://github.com/ElAlev/cer-srt). It builds with the same Java 17 commands and has no external runtime dependencies.
+
+```sh
+./scripts/run-cer.sh
+./scripts/run-cer.sh test-data/cer-srt/examples/stock.sre test-data/cer-srt/examples/stocks.stream --window 500
+./scripts/benchmark-cer.sh test-data/cer-srt/examples/stock.sre test-data/cer-srt/examples/stocks.stream --windows 500,1000 --iterations 2 --output target/cer-benchmark.csv
+```
+
+[cersrt/TestMain.java](src/main/java/cersrt/TestMain.java) contains executable register-comparison, Kleene, and nested-block examples. The existing OpenCEP `TestMain.java` remains the default JAR entry point. `./scripts/test.sh` now also runs 716 CER semantic checks and all 43 upstream query fixtures (18,890 source matches), plus independent checks of corrected expression semantics.
+
+See [CER-SRT instructions](docs/cer-srt.md) for stock/home/taxi examples, the Java API, query syntax, optimizations, benchmark commands, licensing, and scope. The default parser corrects the upstream multioperand repetition quirk; `--legacy` reproduces the tested historical behavior. This package covers the nondeterministic register matcher and Java experiment runner, rather than Wayeb's forecasting modules or the bundled independent SASE/Flink/Esper engines.

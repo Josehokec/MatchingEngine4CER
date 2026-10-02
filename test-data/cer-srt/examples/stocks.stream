@@ -1,0 +1,3 @@
+SELL(id=1,name=INTC,volume=100,price=20.0,timestamp=1)
+BUY(id=2,name=RIMM,volume=100,price=30.0,timestamp=2)
+BUY(id=3,name=QQQ,volume=100,price=40.0,timestamp=3)

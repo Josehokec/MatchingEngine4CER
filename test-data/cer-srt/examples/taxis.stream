@@ -1,0 +1,3 @@
+TRIP(id=1,dropoff_datetime=1,pickup_zone=East Harlem North,dropoff_zone=Midwood,total_amount=10.0)
+TRIP(id=2,dropoff_datetime=2,pickup_zone=Midwood,dropoff_zone=Gravesend,total_amount=8.0)
+TRIP(id=3,dropoff_datetime=3,pickup_zone=Gravesend,dropoff_zone=West Brighton,total_amount=12.0)

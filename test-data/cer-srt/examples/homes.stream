@@ -1,0 +1,3 @@
+LOAD(id=1,plug_timestamp=1,value=240.0,property=1,household_id=0)
+LOAD(id=2,plug_timestamp=2,value=238.0,property=1,household_id=1)
+LOAD(id=3,plug_timestamp=3,value=250.0,property=1,household_id=2)
