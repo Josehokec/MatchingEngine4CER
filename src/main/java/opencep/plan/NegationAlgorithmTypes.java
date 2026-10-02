@@ -1,0 +1,7 @@
+package opencep.plan;
+
+public enum NegationAlgorithmTypes {
+  NAIVE_NEGATION_ALGORITHM,
+  STATISTIC_NEGATION_ALGORITHM,
+  LOWEST_POSITION_NEGATION_ALGORITHM
+}

@@ -1,0 +1,7 @@
+package opencep.adaptive;
+
+public enum OptimizerTypes {
+  TRIVIAL_OPTIMIZER,
+  STATISTICS_DEVIATION_AWARE_OPTIMIZER,
+  INVARIANTS_AWARE_OPTIMIZER
+}

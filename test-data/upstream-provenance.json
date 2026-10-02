@@ -1,0 +1,30 @@
+{
+  "upstream_url": "https://github.com/ilya-kolchinsky/OpenCEP",
+  "upstream_commit": "e320ad874dd82e41cf89cea4459a2ca62d71ca84",
+  "inspection_date": "2026-10-02",
+  "reference_evaluator": "Python CEP, sequential, trivial optimizer and initial tree",
+  "max_input_rows": 180,
+  "fixture_count": 126,
+  "nonempty_reference_cases": 98,
+  "reference_match_objects": 8767,
+  "fixture_sha256": "71d89febaa385ab3e5f4f8f57f7723c37a29f3dba3b92a951153cda07fdb86ca",
+  "modules": [
+    "BasicTests",
+    "NestedTests",
+    "NegationTests",
+    "KC_tests",
+    "PolicyTests",
+    "EventProbabilityTests",
+    "MultiPattern_tests",
+    "TreeConstructionTests",
+    "EvaluationTests",
+    "ParallelTests",
+    "LocalSearchTests"
+  ],
+  "notes": [
+    "Configurations with identical serialized patterns and input records were deduplicated.",
+    "Expected values were computed by the pinned Python engine, not by the Java port.",
+    "Lambda ASTs and original stream records are included in the fixture file.",
+    "Optimizer, parallel-routing and structural-algorithm validation are separate Java regression checks."
+  ]
+}
