@@ -4,3 +4,14 @@ as distributed in https://github.com/ElAlev/cer-srt at commit
 
 Upstream attribution and licensing terms are preserved in
 META-INF/licenses/wayeb-LICENSE.md. See docs/cer-srt.md for scope and changes.
+
+The corecer.exceptions, corecer.execution, corecer.parser, corecer.runtime
+packages and corecer.util.StringUtils are derived from
+https://github.com/CORE-cer/CORE-paper, experiments branch at commit
+de8166902f664fd7ceec06ffa3c9a136825de07a.
+Their original edu.puc.core packages have been consolidated into corecer.
+The upstream GPL-3.0 license is preserved in
+META-INF/licenses/core-cer-LICENSE.txt. CORE experiment queries originate from
+https://github.com/CORE-cer/CORE-paper-experiments at commit
+69c4ca1afeceefbed0682d75b1bf031599f9f785.
+See docs/core-cer.md for retained components, local adaptations, and scope.

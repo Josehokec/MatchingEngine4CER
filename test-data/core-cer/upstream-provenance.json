@@ -1,0 +1,293 @@
+{
+  "repositories": [
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "main",
+      "commit": "ceca254c48897545f182107eb9f4b568e1490a84",
+      "purpose": "Audited main branch and API/reference implementation; recorded for comparison, not the imported engine source."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "commit": "de8166902f664fd7ceec06ffa3c9a136825de07a",
+      "purpose": "Imported CORE-CER engine/parser/runtime source and paper experiment CLI reference."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper-experiments",
+      "branch": "master",
+      "commit": "69c4ca1afeceefbed0682d75b1bf031599f9f785",
+      "purpose": "Unmodified CORE stock, taxi and smarthome query templates and event schemas"
+    }
+  ],
+  "sourceMappings": [
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": "src/main/java/edu/puc/core/exceptions/",
+      "local": "src/main/java/corecer/exceptions/",
+      "note": "Exception classes consolidated into corecer.exceptions."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": "src/main/java/edu/puc/core/execution/",
+      "local": "src/main/java/corecer/execution/",
+      "note": "Engine executors consolidated into corecer.execution, excluding execution/callback; local changes propagate callback and permit a null callback."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": "src/main/java/edu/puc/core/parser/",
+      "local": "src/main/java/corecer/parser/",
+      "note": "Parser implementation consolidated into corecer.parser."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": "src/main/java/edu/puc/core/runtime/",
+      "local": "src/main/java/corecer/runtime/",
+      "note": "Runtime implementation consolidated into corecer.runtime; local reset/getter support added to global state and profiling."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": "src/main/java/edu/puc/core/util/StringUtils.java",
+      "local": "src/main/java/corecer/util/StringUtils.java",
+      "note": "Upstream utility source consolidated into corecer.util.StringUtils."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": "src/main/antlr/edu/puc/core/parser/CORE.g4",
+      "local": "src/main/antlr4/CORE.g4",
+      "note": "ANTLR grammar moved into Maven generator source directory; generated parser package is corecer.parser."
+    },
+    {
+      "origin": "local",
+      "local": "src/main/java/corecer/util/Pair.java",
+      "note": "Local corecer.util.Pair replaces the upstream JavaFX Pair dependency."
+    },
+    {
+      "repository": "https://github.com/CORE-cer/CORE-paper",
+      "branch": "experiments",
+      "upstream": [
+        "src/main/java/edu/puc/core/Main.java",
+        "src/main/java/edu/puc/core/execution/callback/MatchCallback.java"
+      ],
+      "replacement": "corecer.CoreMain/CoreSession/CoreInputs",
+      "note": "These upstream files are reference material, not imported source; the local runner and session supply native descriptor support and baseline metrics."
+    }
+  ],
+  "queryImports": [
+    {
+      "upstream": "stockqueries/CORE/descriptions/core.txt",
+      "local": "test-data/core-cer/queries/stock/descriptions/core.txt",
+      "sha256": "4f7de89655d88aa2c1935ee601e07c9daffc83731ef7c725d6082265247787f2"
+    },
+    {
+      "upstream": "stockqueries/CORE/q1.txt",
+      "local": "test-data/core-cer/queries/stock/q1.txt",
+      "sha256": "4e1df8c0ee93ce74aa889081b41e2b48cfe46acd37cdeca7fc99d2bc4d4d4458"
+    },
+    {
+      "upstream": "stockqueries/CORE/q2.txt",
+      "local": "test-data/core-cer/queries/stock/q2.txt",
+      "sha256": "15214ce684fc17f4b4d092a8f440024c8c641e99755730a7c406056877ee34e9"
+    },
+    {
+      "upstream": "stockqueries/CORE/q3.txt",
+      "local": "test-data/core-cer/queries/stock/q3.txt",
+      "sha256": "ccfe733726c74ab2af35fa8aeca5b4195c578966504d4e44a3957c2d7baed11b"
+    },
+    {
+      "upstream": "stockqueries/CORE/q4.txt",
+      "local": "test-data/core-cer/queries/stock/q4.txt",
+      "sha256": "a840ff089fdd7a4c3784becfd8282c10a0d986bd48f76929856ffc181c3760e1"
+    },
+    {
+      "upstream": "stockqueries/CORE/q5.txt",
+      "local": "test-data/core-cer/queries/stock/q5.txt",
+      "sha256": "12115ad5afee5ff4b38d763891e698f294ed9674f7dead77ec14c9a1531fbc75"
+    },
+    {
+      "upstream": "stockqueries/CORE/q6.txt",
+      "local": "test-data/core-cer/queries/stock/q6.txt",
+      "sha256": "868730be0fb394fdb0cc4b7204337807dfbc18ea7db2f2e48ecf60a8dbda907a"
+    },
+    {
+      "upstream": "stockqueries/CORE/q7.txt",
+      "local": "test-data/core-cer/queries/stock/q7.txt",
+      "sha256": "fad68ca2aaaf77ccb574502ddea19ec6952fcb0f275ea5d1081d49676bbc4a5a"
+    },
+    {
+      "upstream": "stockqueries/CORE/q8.txt",
+      "local": "test-data/core-cer/queries/stock/q8.txt",
+      "sha256": "6987322bc50171c3968c1c7bdd3a9283585972710e9f54abb7111e4771317f7e"
+    },
+    {
+      "upstream": "stockqueries/CORE/q9.txt",
+      "local": "test-data/core-cer/queries/stock/q9.txt",
+      "sha256": "5a8cad12224ad68a12a5252be6b64b01c8b8ee17a4502b591e8c8fd098809416"
+    },
+    {
+      "upstream": "stockqueries/CORE/q10.txt",
+      "local": "test-data/core-cer/queries/stock/q10.txt",
+      "sha256": "b5369fc31615e84ff172e82db0c68086fa26281da1049dafbffd7489558a5ea4"
+    },
+    {
+      "upstream": "stockqueries/CORE/q11.txt",
+      "local": "test-data/core-cer/queries/stock/q11.txt",
+      "sha256": "4dbb1b8e10570852d9af2f2817c4fba5a4ec1458e00ead84710eb81ac7e67bc6"
+    },
+    {
+      "upstream": "stockqueries/CORE/q12.txt",
+      "local": "test-data/core-cer/queries/stock/q12.txt",
+      "sha256": "03562fa4a7b282c120c0537b15d7d49b05bf07876772c8da2f3ad9cb31bf6a9a"
+    },
+    {
+      "upstream": "taxiqueries/CORE/descriptions/core.txt",
+      "local": "test-data/core-cer/queries/taxi/descriptions/core.txt",
+      "sha256": "f0e518dc8a0dca0fd1b23adc78c58522fef223be9b3a5d5e64aa5e7bac7b5cf1"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q1.txt",
+      "local": "test-data/core-cer/queries/taxi/q1.txt",
+      "sha256": "0e7a1a58893f0a6d838f9910310e6ff4d84ce69441db0abc06f46bf6db370e97"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q2.txt",
+      "local": "test-data/core-cer/queries/taxi/q2.txt",
+      "sha256": "323986cd439ac15fa2e041225ea8fb3bc85c59709e681f5b764138e9eda20d4e"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q3.txt",
+      "local": "test-data/core-cer/queries/taxi/q3.txt",
+      "sha256": "02ae843b9e4fc26a40ae1669062a1ea701012f09bc8fa8c780aa56d0ba15e309"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q4.txt",
+      "local": "test-data/core-cer/queries/taxi/q4.txt",
+      "sha256": "02f5ded3591ee5ca0528831102c461be013ac64c88bf31dbaf2924e2b6243c95"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q5.txt",
+      "local": "test-data/core-cer/queries/taxi/q5.txt",
+      "sha256": "1eaae3921a4808c8b7fffbba05f5bfa497972babcbaa93122b362a1a7ddfce2c"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q6.txt",
+      "local": "test-data/core-cer/queries/taxi/q6.txt",
+      "sha256": "f9ac79354d9cdc9460d4b3653cf16bd3fd7e817e065c6147130009a4ad294eaa"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q7.txt",
+      "local": "test-data/core-cer/queries/taxi/q7.txt",
+      "sha256": "8ebcc4d8ba69ac40d546842813249a4e0ee40fdccd044b99d8a4ac14fc5624b5"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q8.txt",
+      "local": "test-data/core-cer/queries/taxi/q8.txt",
+      "sha256": "b6f41b821b9cfde75f378670685b03c1ce5da0eb931b559fadd86b45b9e090c6"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q9.txt",
+      "local": "test-data/core-cer/queries/taxi/q9.txt",
+      "sha256": "388a44daec423d599e18cd626ee77754933096abc6480c34aeceaba5489a9ccf"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q10.txt",
+      "local": "test-data/core-cer/queries/taxi/q10.txt",
+      "sha256": "c9330a01bf99748978ca005ffad1b6dbbaca0949368b7a63a99f48b145ae3e0a"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q11.txt",
+      "local": "test-data/core-cer/queries/taxi/q11.txt",
+      "sha256": "afc911519a1261936dbf22487ecfba31b6a2a35f0151bb5edd7fd511789a7197"
+    },
+    {
+      "upstream": "taxiqueries/CORE/q12.txt",
+      "local": "test-data/core-cer/queries/taxi/q12.txt",
+      "sha256": "bce13f891aa29095eafb6cf96ceff1c7b09afa25f8003e9ffce3f431c0059177"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/descriptions/core.txt",
+      "local": "test-data/core-cer/queries/smarthome/descriptions/core.txt",
+      "sha256": "d51bcfcc89681630020ebe0ae95d62cc7428781e65c0d35c393820f3d91e9df7"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q1.txt",
+      "local": "test-data/core-cer/queries/smarthome/q1.txt",
+      "sha256": "a11116cfff27f9f154f3e984f1168c2bbc76871d1dd36119b146c46488789674"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q2.txt",
+      "local": "test-data/core-cer/queries/smarthome/q2.txt",
+      "sha256": "bba486ca9600e7d1a5fdc25ef71bcc57e7046b5916e90943b14f5c4932383261"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q3.txt",
+      "local": "test-data/core-cer/queries/smarthome/q3.txt",
+      "sha256": "75a59e7caa08c37d60974ea85e5cc5475db98f3378add8f4f6af225de34ce026"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q4.txt",
+      "local": "test-data/core-cer/queries/smarthome/q4.txt",
+      "sha256": "8feb3c5c6d593a01af45be15ce94bac80482527f2c09de7bf7ea7e157c436026"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q5.txt",
+      "local": "test-data/core-cer/queries/smarthome/q5.txt",
+      "sha256": "af0ac016b1a2357456e8022d9799b54cafc89c0562a77a370d0a32dfd5fbfb6e"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q6.txt",
+      "local": "test-data/core-cer/queries/smarthome/q6.txt",
+      "sha256": "f33f18e6d41a64b31b7a2a652ec6a726a088e4312e58b19ad3ea6881921558cf"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q7.txt",
+      "local": "test-data/core-cer/queries/smarthome/q7.txt",
+      "sha256": "eb5e403c1c22367bebfb5a10b068c2da10daa7dc15b2f6bc93669c8a1a83111b"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q8.txt",
+      "local": "test-data/core-cer/queries/smarthome/q8.txt",
+      "sha256": "306027314eca5e319262f4ce7a0ad751557e44b2a45e828247056a5d2714b7ed"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q9.txt",
+      "local": "test-data/core-cer/queries/smarthome/q9.txt",
+      "sha256": "9a544029a70fe513ac0d42af0c12976b198c62a7891378a657d4e4ee88c95a28"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q10.txt",
+      "local": "test-data/core-cer/queries/smarthome/q10.txt",
+      "sha256": "7ea7cbfec03e8dab173ae77f5c98eb4786fd609345a38a1ba470a3c713c28ee4"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q11.txt",
+      "local": "test-data/core-cer/queries/smarthome/q11.txt",
+      "sha256": "4169311cd14dbc05b75c643a117df44820f2822beacd4d9d14134eea5e4769eb"
+    },
+    {
+      "upstream": "smarthomequeries/CORE/q12.txt",
+      "local": "test-data/core-cer/queries/smarthome/q12.txt",
+      "sha256": "e30c0ff7e55985a3b0eacb9cee3d30efb2b8287865202ea5692b6a0c234e9acb"
+    }
+  ],
+  "localExamples": {
+    "directory": "test-data/core-cer/examples/",
+    "origin": "Created locally; not copied from upstream.",
+    "expectedMatches": "test-data/core-cer/examples/expected-matches.json",
+    "expectations": "Calculated manually from SELECT ALL, CONSUME BY NONE and the fixture event order."
+  },
+  "notes": [
+    "Each imported query/schema is byte-identical to its recorded upstream source.",
+    "TIMESTAMP in the upstream query templates is a numeric window placeholder replaced by the original Python experiment drivers; these templates cannot be executed unchanged.",
+    "stock uses stock_time, taxi uses dropoff_datetime, and smarthome uses plug_timestamp as the WITHIN attribute.",
+    "The experiment repository src directory contains ESPER, FLINK and SASE Java, not CORE Java.",
+    "Mixed-engine Python drivers, generated results, other engines and the large streams.zip datasets were excluded.",
+    "Native .data descriptor paths are relative to the current working directory; run the local examples from this project root.",
+    "Local CORE Java packages are consolidated under corecer; upstream source paths and commits retain their original edu/puc/core locations."
+  ]
+}

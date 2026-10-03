@@ -1,0 +1,712 @@
+{
+  "declarations": "DECLARE EVENT A(id int, key string, v double, tick long)\nDECLARE EVENT B(id int, key string, v double, tick long)\nDECLARE EVENT C(id int, key string, v double, tick long)\nDECLARE EVENT X(id int, key string, v double, tick long)\nDECLARE STREAM S(A,B,C,X)",
+  "fixtures": [
+    {
+      "name": "sequence-all",
+      "query": "SELECT ALL * FROM S WHERE A; B; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AABBC",
+      "expected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "sequence-next",
+      "query": "SELECT NEXT * FROM S WHERE A; B; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AABBC",
+      "expected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "sequence-last",
+      "query": "SELECT LAST * FROM S WHERE A; B; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AABBC",
+      "expected": [
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "sequence-max",
+      "query": "SELECT MAX * FROM S WHERE A; B; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AABBC",
+      "expected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "kleene-all",
+      "query": "SELECT ALL * FROM S WHERE A; B+; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABBBC",
+      "expected": [
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ],
+        [
+          0,
+          1,
+          2,
+          4
+        ],
+        [
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          1,
+          2,
+          4
+        ],
+        [
+          0,
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          1,
+          4
+        ],
+        [
+          0,
+          2,
+          3,
+          4
+        ],
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "kleene-next",
+      "query": "SELECT NEXT * FROM S WHERE A; B+; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABBBC",
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "kleene-last",
+      "query": "SELECT LAST * FROM S WHERE A; B+; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABBBC",
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "kleene-max",
+      "query": "SELECT MAX * FROM S WHERE A; B+; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABBBC",
+      "expected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "one-or-more-excludes-empty",
+      "query": "SELECT ALL * FROM S WHERE A; B+; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AC",
+      "expected": [],
+      "upstreamExpected": []
+    },
+    {
+      "name": "standalone-kleene",
+      "query": "SELECT ALL * FROM S WHERE A+ WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AA",
+      "expected": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1
+        ],
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "name": "disjunction",
+      "query": "SELECT ALL * FROM S WHERE A; (B OR C); X WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABCX",
+      "expected": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "equivalent-branches-deduplicated",
+      "query": "SELECT ALL * FROM S WHERE A OR A WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "A",
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "name": "filter-numeric-string",
+      "query": "SELECT ALL * FROM S WHERE (A FILTER A[v >= 2 AND key = 'x']); B WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AAAB",
+      "expected": [
+        [
+          1,
+          3
+        ]
+      ],
+      "keys": [
+        "x",
+        "x",
+        "y",
+        "x"
+      ],
+      "values": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "upstreamExpected": [
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "filter-containment",
+      "query": "SELECT ALL * FROM S WHERE A FILTER A[v IN {2,4}] WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AAAA",
+      "expected": [
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          1
+        ],
+        [
+          3
+        ]
+      ]
+    },
+    {
+      "name": "stream-qualified",
+      "query": "SELECT ALL * FROM S WHERE S>A; S>B WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AXB",
+      "expected": [
+        [
+          0,
+          2
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "project-suffix",
+      "query": "SELECT ALL B,C FROM S WHERE A; B; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABC",
+      "expected": [
+        [
+          1,
+          2
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "project-omits-final-upstream-quirk",
+      "query": "SELECT ALL B FROM S WHERE A; B; C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABC",
+      "expected": [],
+      "upstreamExpected": []
+    },
+    {
+      "name": "alias-capture",
+      "query": "SELECT ALL * FROM S WHERE ((A OR B) AS chosen); C WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "ABC",
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "event-window-inside",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 3 EVENTS CONSUME BY NONE",
+      "types": "AXB",
+      "expected": [
+        [
+          0,
+          2
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "event-window-exclusive-boundary",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 2 EVENTS CONSUME BY NONE",
+      "types": "AXB",
+      "expected": [],
+      "upstreamExpected": []
+    },
+    {
+      "name": "time-window-inside",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 1 SECONDS CONSUME BY NONE",
+      "types": "AB",
+      "expected": [
+        [
+          0,
+          1
+        ]
+      ],
+      "timestamps": [
+        100,
+        1099
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "time-window-exclusive-boundary",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 1 SECONDS CONSUME BY NONE",
+      "types": "AB",
+      "expected": [],
+      "timestamps": [
+        100,
+        1100
+      ],
+      "upstreamExpected": []
+    },
+    {
+      "name": "custom-window-inside",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 10 [tick] CONSUME BY NONE",
+      "types": "AB",
+      "expected": [
+        [
+          0,
+          1
+        ]
+      ],
+      "ticks": [
+        100,
+        109
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "custom-window-exclusive-boundary",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 10 [tick] CONSUME BY NONE",
+      "types": "AB",
+      "expected": [],
+      "ticks": [
+        100,
+        110
+      ],
+      "upstreamExpected": []
+    },
+    {
+      "name": "consume-none",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 100 EVENTS CONSUME BY NONE",
+      "types": "AABB",
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "consume-any",
+      "query": "SELECT ALL * FROM S WHERE A; B WITHIN 100 EVENTS CONSUME BY ANY",
+      "types": "AABAB",
+      "expected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "name": "unwindowed-starts-only-on-first-event-upstream-quirk",
+      "query": "SELECT ALL * FROM S WHERE A; B; C CONSUME BY NONE",
+      "types": "AABBC",
+      "expected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ],
+      "upstreamExpected": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          0,
+          3,
+          4
+        ]
+      ]
+    }
+  ],
+  "upstream": {
+    "repository": "https://github.com/CORE-cer/CORE-paper",
+    "branch": "experiments",
+    "commit": "de8166902f664fd7ceec06ffa3c9a136825de07a",
+    "capture": "Unmodified original Java sources compiled separately with ANTLR 4.7 and upstream build.gradle dependencies; CoreParitySuite --capture; zero-based indices relative to each short input."
+  }
+}

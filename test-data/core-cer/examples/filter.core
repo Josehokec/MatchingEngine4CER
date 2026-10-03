@@ -1,0 +1,6 @@
+SELECT ALL *
+FROM S
+WHERE (A as X; B as Y; C as Z)
+FILTER X[value > 5] AND Y[value > 8] AND Z[value > 5]
+WITHIN 100 EVENTS
+CONSUME BY NONE

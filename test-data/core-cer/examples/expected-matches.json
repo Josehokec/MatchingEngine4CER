@@ -1,0 +1,84 @@
+{
+  "description": "Hand-calculated fixtures. Matching uses input order; indexes are zero-based event rows (excluding the CSV header). Input id equals its index. All three queries use SELECT ALL and CONSUME BY NONE.",
+  "schema": "schema.core",
+  "csv": "events.csv",
+  "nativeStream": "events.stream",
+  "timestampUnit": "milliseconds",
+  "cases": [
+    {
+      "query": "sequence.core",
+      "expectedMatches": [
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "explanation": "Each of two A events can pair with each of two B events and the final C; N is skipped."
+    },
+    {
+      "query": "filter.core",
+      "expectedMatches": [
+        [
+          1,
+          4,
+          5
+        ]
+      ],
+      "explanation": "Only A index 1 has value > 5, only B index 4 has value > 8, and the final C has value > 5."
+    },
+    {
+      "query": "kleene.core",
+      "expectedMatches": [
+        [
+          0,
+          3,
+          5
+        ],
+        [
+          0,
+          4,
+          5
+        ],
+        [
+          0,
+          3,
+          4,
+          5
+        ],
+        [
+          1,
+          3,
+          5
+        ],
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          1,
+          3,
+          4,
+          5
+        ]
+      ],
+      "explanation": "For each A, B+ selects either single B or both B events in order before the final C."
+    }
+  ]
+}

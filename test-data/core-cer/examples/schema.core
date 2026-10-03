@@ -1,0 +1,5 @@
+DECLARE EVENT A(id long, value int)
+DECLARE EVENT B(id long, value int)
+DECLARE EVENT C(id long, value int)
+DECLARE EVENT N(id long, value int)
+DECLARE STREAM S(A, B, C, N)
